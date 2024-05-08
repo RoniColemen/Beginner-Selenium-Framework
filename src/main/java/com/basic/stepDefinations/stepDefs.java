@@ -2,6 +2,7 @@ package com.basic.stepDefinations;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -57,4 +58,22 @@ public class stepDefs {
         driver.findElement(By.xpath("//input[@id='input-password']")).sendKeys(password);
     }
 
+    @And("User clicks on Desktops tab and looks for a Mac")
+    public void userClicksOnDesktopsTabAndLooksAMac(){
+        driver.findElement(By.xpath("//li[@class='dropdown' and contains(.,'Desktops')]/a")).click();
+        driver.findElement(By.xpath("(//div[@class='dropdown-inner']//child::a[contains(.,'Mac')])[1]")).click();
+    }
+
+
+    @When("User clicks on the mac and adds the product to the wishlist")
+    public void userClicksOnTheMacAndAddsTheProductToTheWishlist() {
+        driver.findElement(By.xpath("//div[@class='image']/a")).click();
+    }
+
+    @Then("User adds the product to the cart and checks out")
+    public void userAddsTheProductToTheCartAndChecksOut() {
+        driver.findElement(By.xpath("//button[@id='button-cart']")).click();
+        driver.findElement(By.xpath("//div[@id='cart']/button")).click();
+        driver.findElement(By.xpath("//a[contains(.,'View Cart')]")).click();
+    }
 }
